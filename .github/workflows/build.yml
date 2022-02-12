@@ -10,10 +10,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Build
-        run: dotnet build --configuration Release /p:Version=${VERSION}
-      - name: Test
-        run: dotnet test --configuration Release /p:Version=${VERSION} --no-build
+        run: dotnet build --configuration Release
       - name: Pack
-        run: dotnet pack --configuration Release /p:Version=${VERSION} --no-build --output .
+        run: dotnet pack --configuration Release --no-build --output .
       - name: Push
         run: dotnet nuget push tor-control-net.*.nupkg --source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json --api-key ${{ secrets.GITHUB_TOKEN }}
